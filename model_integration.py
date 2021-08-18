@@ -4,6 +4,7 @@ from os import system
 from pandas.core.algorithms import mode
 from pandas.core.frame import DataFrame
 import streamlit as st
+import gzip
 import pickle5 as pickle
 import pandas as pd
 import geocoder
@@ -27,7 +28,9 @@ class HospitalPricingClassifier(BaseEstimator, ClassifierMixin):
                  threshold=100):
             
         self.hospital_loc = pd.read_parquet(HospitalLocPath)
-        self.prices = pd.read_pickle(PricesPath)
+        with gzip.open(PricesPath) as ifp:
+            self.prices = pickle.load(ifp)
+            
 
     def _get_distance(self,p_lat, p_lng, threshold=100):
 
