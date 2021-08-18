@@ -32,6 +32,7 @@ class HospitalPricingClassifier(BaseEstimator, ClassifierMixin):
         data = pickle.dumps(pb, protocol=5)
         file = pickle.loads(data)
         self.prices = pd.read_pickle(file)
+        print(file)
 
             
 
