@@ -23,7 +23,7 @@ class HospitalPricingClassifier(BaseEstimator, ClassifierMixin):
 
     def __init__(self,
                  HospitalLocPath='hospital_model3',
-                 PricesPath='pickle_prices',
+                 PricesPath='pickle_prices.pkl',
                  threshold=100):
             
         self.hospital_loc = pd.read_parquet(HospitalLocPath)
