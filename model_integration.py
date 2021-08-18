@@ -28,7 +28,7 @@ class HospitalPricingClassifier(BaseEstimator, ClassifierMixin):
                  threshold=100):
             
         self.hospital_loc = pd.read_parquet(HospitalLocPath)
-        with gzip.open(PricesPath) as ifp:
+        with open(PricesPath) as ifp:
             self.prices = pickle.load(ifp)
             
 
