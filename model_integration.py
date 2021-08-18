@@ -28,8 +28,9 @@ class HospitalPricingClassifier(BaseEstimator, ClassifierMixin):
                  threshold=100):
             
         self.hospital_loc = pd.read_parquet(HospitalLocPath)
-        with open(PricesPath, 'r') as ifp:
-            self.prices = pickle.load(ifp)
+        pb = pickle.PickleBuffer(b"pickle_prices.pkl")
+        data = pickle.dumps(pb, protocol=5)
+        assert pickle.loads(data) == b"pickle_prices.pkl"
             
 
     def _get_distance(self,p_lat, p_lng, threshold=100):
