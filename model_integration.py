@@ -28,11 +28,11 @@ class HospitalPricingClassifier(BaseEstimator, ClassifierMixin):
                  threshold=100):
             
         self.hospital_loc = pd.read_parquet(HospitalLocPath)
-        pb = pickle.PickleBuffer(b"pickle_prices.pkl")
-        data = pickle.dumps(pb, protocol=5)
-        file = pickle.loads(data)
-        self.prices = pd.read_pickle(file)
-        print("FILE PRINOUT HERE, CHECK OUTPUT", file)
+        pickle_off = open("pickle_prices.pkl","rb")
+        emp = pickle.load(pickle_off)
+        self.prices = pd.DataFrame(emp)
+
+      
 
             
 
